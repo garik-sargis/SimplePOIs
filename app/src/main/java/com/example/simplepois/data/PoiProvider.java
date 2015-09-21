@@ -31,8 +31,6 @@ import retrofit.Retrofit;
 
 public class PoiProvider extends ContentProvider {
 
-    public static final String LOG_TAG = PoiProvider.class.getSimpleName();
-
     // URI Types
     private static final int TYPE_POI_INFO_DIR = 0;
     private static final int TYPE_POI_DETAILS_ITEM = 1;
@@ -122,10 +120,8 @@ public class PoiProvider extends ContentProvider {
                                 String[] selectionArgs, String sortOrder) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        // Try to load from the server
+        // Try to load from the server if not already loaded
         if (!poiInfoListLoaded()) {
-            Log.d(LOG_TAG, "Poi info not loaded: loading from the server");
-
             Call<PoiInfoList> call = retrofitService.poiInfoList();
 
             try {
@@ -145,8 +141,6 @@ public class PoiProvider extends ContentProvider {
                 // TODO: Handle exception
                 e.printStackTrace();
             }
-        } else {
-            Log.d(LOG_TAG, "Poi info already loaded");
         }
 
         return db.query(PoiInfoEntry.TABLE_NAME,
@@ -161,10 +155,8 @@ public class PoiProvider extends ContentProvider {
     private Cursor queryPoiDetails(long remoteId, String[] projection) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        // Try to load from the server
+        // Try to load from the server if not already loaded
         if (!poiDetailsLoaded(remoteId)) {
-            Log.d(LOG_TAG, "Poi details not loaded: loading from the server");
-
             Call<PoiDetails> call = retrofitService.poiDetails(remoteId);
 
             try {
@@ -180,8 +172,6 @@ public class PoiProvider extends ContentProvider {
                 // TODO: Handle exception
                 e.printStackTrace();
             }
-        } else {
-            Log.d(LOG_TAG, "Poi details already loaded");
         }
 
         String selection = PoiDetailsEntry.COL_REMOTE_ID + " = ?";

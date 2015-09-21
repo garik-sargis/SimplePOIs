@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button
+<TextView
     android:id="@+id/text_title"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    android:gravity="start|center_vertical"
+    android:minHeight="?android:listPreferredItemHeightSmall"
+    android:paddingLeft="?android:listPreferredItemPaddingLeft"
+    android:paddingRight="?android:listPreferredItemPaddingRight"
+    android:textAppearance="?android:textAppearanceListItemSmall"
+    tools:text="Sample Title"/>

@@ -28,7 +28,7 @@ public class PoiTitlesAdapter extends RecyclerView.Adapter<PoiTitlesAdapter.View
         public ViewHolder(View itemView) {
             super(itemView);
 
-            vTitle = findById(itemView, android.R.id.text1);
+            vTitle = findById(itemView, R.id.text_title);
         }
 
         public void bind(PoiInfo poiInfo) {
@@ -76,7 +76,7 @@ public class PoiTitlesAdapter extends RecyclerView.Adapter<PoiTitlesAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+        View itemView = inflater.inflate(R.layout.list_item_poi_titles, parent, false);
         return new ViewHolder(itemView);
     }
 
